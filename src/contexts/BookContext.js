@@ -1,7 +1,8 @@
+import React from "react";
 import { useState } from "react";
 import { v4 } from "uuid";
 
-const BookContext = React.createContext();
+export const BookContext = React.createContext();
 
 function BookContextProvider(props) {
   const [books, setBooks] = useState([
