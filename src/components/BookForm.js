@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { BookContext } from "../contexts/BookContext";
+import { v4 } from "uuid";
 
 function BookForm() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
 
-  const { addBook } = useContext(BookContext);
+  const { dispatch } = useContext(BookContext);
 
   function clearInputFields() {
     setTitle("");
@@ -15,7 +16,10 @@ function BookForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addBook(title, author);
+    dispatch({
+      type: "ADD_BOOK",
+      book: { title, author, id: v4() },
+    });
     clearInputFields();
   }
 
